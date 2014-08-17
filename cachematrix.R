@@ -1,18 +1,28 @@
 ## cached matrix inversion functions for 
 ## programming assignment 2
+## demonstrates lexical scoping
 
 ## creates a matrix with getters and setters
 ## so regetting of an inverse matrix gets
 ## result form cache instead of recalculating
 
 makeCacheMatrix <- function(mat = matrix()) {
+    # initialize the inverse to NULL
     inv <- NULL
-    set <- function(setmat) {
-        mat <<- setmat
+    
+    # setter for matrix
+    set <- function(mtrx) {
+        mat <<- mtrx
         inv <<- NULL
     }
+    
+    # getter for matrix
     get <- function() mat
+    
+    # setter for the inverse
     set.inverse <- function(setinv) inv <<- setinv
+    
+    # getter for the inverse
     get.inverse <- function() inv
     list(set = set, get = get,
          set.inverse = set.inverse,
@@ -25,14 +35,16 @@ makeCacheMatrix <- function(mat = matrix()) {
 ## results instead
 
 cacheSolve <- function(cached.mat, ...) {
-    ## Return a matrix that is the inverse of 'x'
+    # get the stored inverse
     inv <- cached.mat$get.inverse()
+    # if it exists return it
     if(!is.null(inv)) {
         message("getting cached inverse")
         return(inv)
     }
-    data <- cached.mat$get()
-    inv <- solve(data, ...)
+    # else calculate, store and return it
+    raw.mat <- cached.mat$get()
+    inv <- solve(raw.mat, ...)
     cached.mat$set.inverse(inv)
     inv
 }
