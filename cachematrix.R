@@ -1,7 +1,9 @@
-## Put comments here that give an overall description of what your
-## functions do
+## cached matrix inversion functions for 
+## programming assignment 2
 
-## Write a short comment describing this function
+## creates a matrix with getters and setters
+## so regetting of an inverse matrix gets
+## result form cache instead of recalculating
 
 makeCacheMatrix <- function(mat = matrix()) {
     inv <- NULL
@@ -18,7 +20,9 @@ makeCacheMatrix <- function(mat = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## cache solves the inverse of a matrix
+## if already calculated returns cached
+## results instead
 
 cacheSolve <- function(x, ...) {
     ## Return a matrix that is the inverse of 'x'
