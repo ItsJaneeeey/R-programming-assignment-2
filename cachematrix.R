@@ -24,6 +24,8 @@ makeCacheMatrix <- function(mat = matrix()) {
     
     # getter for the inverse
     get.inverse <- function() inv
+    
+    # returns a list of getter and setter functions
     list(set = set, get = get,
          set.inverse = set.inverse,
          get.inverse = get.inverse)
@@ -46,5 +48,7 @@ cacheSolve <- function(cached.mat, ...) {
     raw.mat <- cached.mat$get()
     inv <- solve(raw.mat, ...)
     cached.mat$set.inverse(inv)
+    
+    # returns the inverse
     inv
 }
